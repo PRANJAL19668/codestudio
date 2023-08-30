@@ -4,8 +4,16 @@ const express=require('express');
 const port=8000;
 //Setting up the app to the express.This app has all the functionalities which is requured to the server.
 const app=express();
+//setting up the path
+const path=require('path');
 //use express router
 app.use('/', require('./routes'));
+//setting up the view engine
+app.set('view engine','ejs');
+//setting up the path
+app.set('views',path.join(__dirname,'views'));
+//setting up the path another way
+app.set('views','./views');
 
 
 
