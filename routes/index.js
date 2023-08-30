@@ -7,6 +7,6 @@ console.log('router loaded');
 
 
 //accessing homeController in routes
-router.get('/',homeController.home);
+router.get('/', homeController.home);
 router.use('/users',require('./users'));
 module.exports=router;
