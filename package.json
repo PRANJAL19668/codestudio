@@ -1,0 +1,20 @@
+{
+  "name": "codestudio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PRANJAL_KUMAR_YADAV_COOL",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "'url"
+  },
+  "description": ""
+}
