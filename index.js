@@ -14,6 +14,10 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 //setting up the path another way
 app.set('views','./views');
+//midddleware
+app.use(express.urlencoded());
+//setting up the assets folder
+app.use(express.static('./assets'));
 
 
 
