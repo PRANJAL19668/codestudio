@@ -16,7 +16,7 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 //setting up the path another way
 app.set('views','./views');
-//midddleware
+//midddleware 
 app.use(express.urlencoded());
 //setting up the statics folder
 app.use(express.static('./assets'));
