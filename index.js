@@ -19,7 +19,7 @@ app.use(express.urlencoded());
 //setting up the statics folder
 app.use(express.static('./assets'));
 //using expressLayouts
-app.use('expressLayouts');
+app.use(expressLayouts);
 
 
 
