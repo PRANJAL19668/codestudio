@@ -14,7 +14,7 @@ const userSchema=new mongoose.Schema({
         required:true
     }
 },{
-    //to check when was the user  created and last updated at
+    //to check when was the user  createdAt and last updatedAt
     timestamps:true
 
 });
