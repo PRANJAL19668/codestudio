@@ -20,7 +20,9 @@ app.use(express.urlencoded());
 app.use(express.static('./assets'));
 //using expressLayouts
 app.use(expressLayouts);
-
+//extract styles and scripts from subpages into layout.
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 
 
 
