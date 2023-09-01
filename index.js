@@ -6,6 +6,11 @@ const port=8000;
 const app=express();
 // requiring up the path
 const path=require('path');
+//setting up the express-layouts
+const expressLayouts=require('express-ejs-layouts');
+//using expressLayouts
+app.use('expressLayouts');
+
 //use express router
 app.use('/', require('./routes'));
 //setting up the view engine
@@ -16,8 +21,11 @@ app.set('views',path.join(__dirname,'views'));
 app.set('views','./views');
 //midddleware
 app.use(express.urlencoded());
-//setting up the assets folder
+//setting up the statics folder
 app.use(express.static('./assets'));
+//using expressLayouts
+app.use('expressLayouts');
+
 
 
 
