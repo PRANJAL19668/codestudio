@@ -3,11 +3,13 @@ const express=require('express');
 //setting up the port
 const port=8000;
 //Setting up the app to the express.This app has all the functionalities which is requured to the server.
-const app=express();
+const app = express();
 // requiring up the path
 const path=require('path');
 //setting up the express-layouts
 const expressLayouts=require('express-ejs-layouts');
+//setting up thr database
+const db=require('./config/mongoose');
 //setting up the view engine
 app.set('view engine','ejs');
 //setting up the path
