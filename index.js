@@ -1,5 +1,7 @@
 //setting up the express
 const express=require('express');
+//setting up the cookie-parser
+const cookieParser=require('cookie-parser');
 //setting up the port
 const port=8000;
 //Setting up the app to the express.This app has all the functionalities which is requured to the server.
@@ -18,6 +20,8 @@ app.set('views',path.join(__dirname,'views'));
 app.set('views','./views');
 //midddleware 
 app.use(express.urlencoded());
+//using the cookie-parser
+app.use(cookieParser());
 //setting up the statics folder
 app.use(express.static('./assets'));
 //using expressLayouts
