@@ -4,11 +4,14 @@
         <title>
             <%=locals.title %>
         </title>
+        <link rel="stylesheet" type="text/css" href="/css/layout.css">
     </head>
     <body>
+        <!--header------->
         <%- include('_header'); %>
         <!------variable part defined---------->
-           <%-body %>
+           <%- body %>
+           <!-----footer---------->
         <%- include('_footer'); %>
        
 
