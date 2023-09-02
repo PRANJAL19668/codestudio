@@ -22,35 +22,6 @@ module.exports.signin=function(req,res){
 }
 //GET THE SIGN-UP DATA
 //using async await only with functions.
-// module.exports.create = async (req, res) => {
-//   try {
-//      if (req.body.password != req.body.confirm_password) {
-//          return res.redirect("back");
-//     }
-
-//      const user = await User.findOne({ email: req.body.email });
-//             if (!user) {
-//             await User.create(req.body);
-//             } else {
-//                // req.flash('error', 'User is Alredy Present ! Please Sign-In !')
-//                 console.log('User is already present !!')
-//             }
-//            // req.flash('success', 'You have Signed-Up Successfully !')
-//             return res.redirect("/users/sign-in");
-
-//   } catch (error) {
-//     // console.log("Error", error);
-//     let errMeg = error.message;
-//     if(process.env.environment == 'production') {
-//       return res.status(500).json({
-//         message: 'Internal Server Error!'
-//       })
-//     }
-//     return res.status(500).json({
-//       message: errMeg
-//     })
-//   }
-// };
 module.exports.create= async function(req,res){
   if(req.body.password != req.body.Confirm_password){
     return res.redirect('back');
