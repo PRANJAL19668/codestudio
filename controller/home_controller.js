@@ -1,5 +1,6 @@
 //module.exports.actionName=function(req,res){}
 module.exports.home=function(req,res){
+    //checking cookies if exist or not.
     console.log(req.cookies);
     //changing the value of cookies
     res.cookie('user_id',25);

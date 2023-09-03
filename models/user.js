@@ -15,7 +15,10 @@ const userSchema=new mongoose.Schema({
     },
 },{
     //to check when was the user  createdAt and last updatedAt:
-    timestamps:true
+    timestamps:{
+        createdAt: true,
+        updatedAt:true
+    }
 });
 const User = mongoose.model('User',userSchema);
 module.exports=User;
