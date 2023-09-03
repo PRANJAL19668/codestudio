@@ -3,21 +3,25 @@
 //.. one level up
 const User=require('../models/user');
 module.exports.profile= async function(req,res){
+ if(req.cookies.user_id){
   //check if the cookies with user_id is present or not.
- // if(req.cookies.user_id){
     try{
-      let user= await User.findById(req.params.id);
+      let user = await User.findById(req.cookies.user_id);
+      //if the user found
       return res.render('user_profile',{
         title:'Profile Page',
         //json object created
-        profile_user: user
+        user_profile: user
       });
+      
 
     } catch(err){
       console.log('Error in showing the details of signed-in user',err);
       return res.redirect('back');
     }
   }
+}
+
   //return res.end('<h1>User Profile </h1>');  
   //return res.render('User_Profile',{
     //title:'Profile Page'
