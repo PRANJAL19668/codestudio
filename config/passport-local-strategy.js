@@ -2,22 +2,25 @@
 const User=require('../models/user');
 //setting up the passport
 const passport = require('passport');
-//setting up the passport-loacal 
+//setting up the passport-local 
 const LocalStrategy = require('passport-local').Strategy;
 //authentication using passport
+//we need to tell to the passport to use the LocalStrategy:
 passport.use(
     new LocalStrategy(
-        //syntax is required
+        //syntax is required which is usernameField:'email'
       { usernameField: "email",
       //ISTRATEGYOPTIONSWITHREQUEST:passReqToCallback:true
        passReqToCallback: true
       },
       //callback function is required
       function (req, email, password, done) {
-        //done is inbuilt funcyrion which pass to
+        //when LocalStrategy is called() the email,password is passed on + the done inbuilt function() is passed on whtever the things happening on passport whether the  req is successfull or errors this would be handled by this done function().
+        //done is inbuilt function to passport which pass to
         //find a user and establish identity
   
         User.findOne({ email: email })
+        //email(1st email is the property which passed on the models an 2nd email is the value which passes on)
           .exec() // Execute the query
           .then(user => {
             if (!user || user.password !== password) {
