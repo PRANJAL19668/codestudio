@@ -77,9 +77,10 @@ passport.checkAuthentication=function(req,res,next){
   return res.redirect('/users/sign-in');
 }
 //this is basically a middleware to check if the user is signed in or not
+//setting the user for views
 passport.setAuthenticatedUser=function(req,res,next){
   if(req.isAuthenticated()){
-    //req.user contains the current sign-in user from the session-cookie and we are just sending this to locals for the views
+    //req.user contains the current sign-in user from the session-cookie and we are just sending this to locals for the views.
     res.locals.user=req.user;
   }
   next();
