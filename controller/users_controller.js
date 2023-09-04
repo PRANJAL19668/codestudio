@@ -35,6 +35,9 @@ module.exports.signup=function(req,res){
 }
 //RENDER SIGN-IN PAGE
 module.exports.signin=function(req,res){
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile');
+  }
   return res.render('user_sign_in',{
     title:"LEET CODING/SIGN IN"
   });
@@ -42,6 +45,9 @@ module.exports.signin=function(req,res){
 //GET THE SIGN-UP DATA
 //using async await only with functions.
 module.exports.create= async function(req,res){
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile');
+  }
   if(req.body.password != req.body.Confirm_password){
     return res.redirect('back');
   }
@@ -89,34 +95,34 @@ module.exports.create= async function(req,res){
 
 //   }
 //signed-in using manual authentication
-// module.exports.createSession = async function(req, res) {
-//   try {
-//     const user = await User.findOne({ email: req.body.email });
+module.exports.createSession = async function(req, res) {
+  try {
+    const user = await User.findOne({ email: req.body.email });
 
-//     if (user) {
-//       // Check if the provided password matches the user's password
-//       if (user.password === req.body.password) {
-//         // If the password matches, set the user_id cookie
-//         res.cookie('user_id', user._id);
-//         return res.redirect('/users/profile');
-//       } else {
-//         // Password does not match, redirect back
-//         return res.redirect('back');
-//       }
-//     } else {
-//       // User with the given email doesn't exist, redirect back
-//       return res.redirect('back');
-//     }
-//   } catch (err) {
-//     console.log('Error in creating user while signing-in', err);
-//     // Handle the error appropriately, e.g., send an error response
-//     //return res.status(500).send('Internal Server Error');
-// };
-// }
+    if (user) {
+      // Check if the provided password matches the user's password
+      if (user.password === req.body.password) {
+        // If the password matches, set the user_id cookie
+        res.cookie('user_id', user._id);
+        return res.redirect('/users/profile');
+      } else {
+        // Password does not match, redirect back
+        return res.redirect('back');
+      }
+    } else {
+      // User with the given email doesn't exist, redirect back
+      return res.redirect('back');
+    }
+  } catch (err) {
+    console.log('Error in creating user while signing-in', err);
+    // Handle the error appropriately, e.g., send an error response
+    return res.status(500).send('Internal Server Error');
+};
+}
 
 
 //LOCAL AUTHENTICATION
 //when passport.js uses LocalStrategy () to authenticate the user,controlls come here and it will redirect to home page.
-module.exports.createSession=function(req,res){
-  return res.redirect('/');
-}
+// module.exports.createSession=function(req,res){
+//   return res.redirect('/');
+// }
