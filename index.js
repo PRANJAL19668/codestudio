@@ -20,6 +20,34 @@ const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 // setting Mongostore
 const MongoStore = require( 'connect-mongo');
+//setting up sass-middleware
+const sassMiddleware = require('node-sass-middleware');
+
+
+
+app.use(sassMiddleware({
+    //source file
+    src:'./assets/scss',
+    //destination file
+    dest:'./assets/css',
+    debug:true,
+    outputStyle:'extended',
+    prefix:'/css'
+}));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //midddleware 
 app.use(express.urlencoded());
 //using the cookie-parser
@@ -52,7 +80,7 @@ app.use(session({
         maxAge:(1000*60*100)
     },
     store: MongoStore.create({
-        //session to intract with mongoose
+        //session to interact with mongoose
         mongoUrl:'mongodb://localhost/codestudio_developement',
         // mongooseConnection:db,
         //do i want to remove automatically is disabled
