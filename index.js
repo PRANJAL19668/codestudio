@@ -18,8 +18,8 @@ const session=require('express-session');
 const passport=require('passport');
 //setting up the passport-local
 const passportLocal=require('./config/passport-local-strategy');
-// //setting Mongostore
-// const Mongostore=require('connect-mongo');
+// setting Mongostore
+const Mongostore=require('connect-mongo');
 //midddleware 
 app.use(express.urlencoded());
 //using the cookie-parser
