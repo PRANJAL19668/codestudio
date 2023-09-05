@@ -10,6 +10,7 @@ const postSchema = new mongooose.Schema({
         ref:'User'
     }
 },{
+    //TO CHECK WHEN WAS THE USER CREATED AND LAST UPDATED AT:
     timestamps:{
         createdAt:true,
         updatedAt:true
