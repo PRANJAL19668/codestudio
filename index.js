@@ -18,6 +18,8 @@ const session=require('express-session');
 const passport=require('passport');
 //setting up the passport-local
 const passportLocal=require('./config/passport-local-strategy');
+// //setting Mongostore
+// const Mongostore=require('connect-mongo');
 //midddleware 
 app.use(express.urlencoded());
 //using the cookie-parser
@@ -49,7 +51,7 @@ app.use(session({
         //we need to give the age of the cookie how long it should survive after that it expires the cookie when calculating it expires the setCookie attribute. 
         maxAge:(1000*60*100)
     }
-}));
+    }));
 //we need to the app to use passport
 app.use(passport.initialize());
 app.use(passport.session());
