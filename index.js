@@ -19,7 +19,7 @@ const passport=require('passport');
 //setting up the passport-local
 const passportLocal=require('./config/passport-local-strategy');
 // setting Mongostore
-const Mongostore=require('connect-mongo');
+const MongoStore = require( 'connect-mongo');
 //midddleware 
 app.use(express.urlencoded());
 //using the cookie-parser
@@ -50,7 +50,17 @@ app.use(session({
     cookie:{
         //we need to give the age of the cookie how long it should survive after that it expires the cookie when calculating it expires the setCookie attribute. 
         maxAge:(1000*60*100)
-    }
+    },
+    store: MongoStore.create({
+        //session to intract with mongoose
+        mongoUrl:'mongodb://localhost/codestudio_developement',
+        // mongooseConnection:db,
+        //do i want to remove automatically is disabled
+        autoRemove:'disable'
+    },
+    function(err){
+        console.log(err || 'connect-mongoose setup OK');
+    })
     }));
 //we need to the app to use passport
 app.use(passport.initialize());
