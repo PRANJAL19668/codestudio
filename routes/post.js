@@ -7,9 +7,4 @@ router.post('/create',postController.create);
 
 
 
-
-
-
-
-
 module.exports = router;
