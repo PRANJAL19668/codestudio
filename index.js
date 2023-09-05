@@ -32,20 +32,9 @@ app.use(sassMiddleware({
     dest:'./assets/css',
     debug:true,
     outputStyle:'extended',
+    //It is basically for where my server lookout for css files, so we use prefix:'/css'
     prefix:'/css'
 }));
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //midddleware 

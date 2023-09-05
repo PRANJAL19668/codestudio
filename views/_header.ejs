@@ -4,7 +4,9 @@
         <!----if locals.user is present the show user name and print its  sign-out link-->
         <% if (locals.user){ %>
             <li>
-                <%= user.name %></li>
+                <a href="/users/profile">
+                <%= user.name %></a>
+            </li>
             <li>
                 <a href="/users/sign-out">Sign-Out</a>
             </li>
