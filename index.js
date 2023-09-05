@@ -58,6 +58,7 @@ app.use(session({
         //do i want to remove automatically is disabled
         autoRemove:'disable'
     },
+    //callback function
     function(err){
         console.log(err || 'connect-mongoose setup OK');
     })

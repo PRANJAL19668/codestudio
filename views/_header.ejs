@@ -1,3 +1,20 @@
 <header>
     page header
+    <ul>
+        <!----if locals.user is present the show user name and print its  sign-out link-->
+        <% if (locals.user){ %>
+            <li>
+                <%= user.name %></li>
+            <li>
+                <a href="/users/sign-out">Sign-Out</a>
+            </li>
+            <%} else { %>
+                <li>
+                    <a href="/users/sign_in">Sign-In</a>
+
+                    <li>
+                    <a href="/users/sign_up">Sign-Up</a>
+                </li>
+                <%} %>
+    </ul>
 </header>
