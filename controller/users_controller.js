@@ -129,17 +129,14 @@ module.exports.createSession=function(req,res){
 
 //DESTROY SESSION
 module.exports.destroySession=function(req,res){
-  //req.logout() is thye function given by passport.js
+  //req.logout() is the function given by passport.js
   
   req.logout(function(err) {
     if (err) {
         // Handle the error, if any
-        console.error(err);
+        console.log(err);
     }
     return res.redirect('/');
 });
-
-
-
   };
   
