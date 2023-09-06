@@ -4,9 +4,23 @@
  </h1>
  <section id="feed-post">
         <h4>Posts</h4>
-        <form action="/posts-create" id="new-post-form" method="POST">
-        <textarea name="content" rows="50" cols="100" placeholder="Type post here........" required></textarea>
+        <form action="/post/create" id="new-post-form" method="POST">
+        <textarea name="content" rows="20" cols="50" placeholder="Type post here........" required></textarea>
         <input type="submit" value="Post">
         </form>
+        <div id="post-list-container">
+              <ul>
+                     <!-----------------syntax required------------------>
+                     <% for (post of posts) { %>
+                            <li>
+                                   <%= post.content %>
+                                   <small>
+                                          <!----fetching which user has post it -->
+                                          <%= post.user %>
+                                   </small>
+                            </li>
+                     <%}%>
+              </ul>
+        </div>
  </section>
       
