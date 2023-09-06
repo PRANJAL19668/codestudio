@@ -7,7 +7,10 @@ module.exports.home= async function(req,res){
    // res.cookie('user_id',87);
     //return res.end('<h1>Express  is up for the codestudio!</h1>');
     try{
-        let postsdata = await Post.find({});
+        let postsdata = await Post.find({}).
+        //populating the user of each post ie.. showing the name of each post.
+        //.exec() is the callback function.
+        populate('user').exec();
         return res.render('home',{
             title:'HOME',
             //json object created

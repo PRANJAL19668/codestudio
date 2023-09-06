@@ -4,20 +4,26 @@
  </h1>
  <section id="feed-post">
         <h4>Posts</h4>
+        <!-----------CHECKING AUTHENTICATION IF THE USER IS SIGNED-IN OR NOT PLACING CHECKS------------------------------------>
+        <% if (locals.user){ %>
         <form action="/post/create" id="new-post-form" method="POST">
         <textarea name="content" rows="20" cols="50" placeholder="Type post here........" required></textarea>
         <input type="submit" value="Post">
         </form>
+        <%}%>
         <div id="post-list-container">
               <ul>
                      <!-----------------syntax required------------------>
                      <% for (post of posts) { %>
                             <li>
+                                   <p>
                                    <%= post.content %>
+                                   <br>
                                    <small>
                                           <!----fetching which user has post it -->
-                                          <%= post.user %>
+                                          <%= post.user.name %>
                                    </small>
+                                   </p>
                             </li>
                      <%}%>
               </ul>
