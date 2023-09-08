@@ -4,7 +4,7 @@
  </h1>
  <section id="feed-post">
         <h4>Posts</h4>
-        <!-----------CHECKING AUTHENTICATION IF THE USER IS SIGNED-IN OR NOT PLACING CHECKS------------------------------------>
+        <!-----------CHECKING AUTHENTICATION IF THE USER IS SIGNED-IN OR NOT PLACING CHECKS NO ONE OTHER WHO IS SIGNED-IN WILL BE ABLE TO CREATE A POST------------------------------------>
         <% if (locals.user){ %>
         <form action="/post/create" id="new-post-form" method="POST">
         <textarea name="content" rows="20" cols="50" placeholder="Type post here........" required></textarea>
