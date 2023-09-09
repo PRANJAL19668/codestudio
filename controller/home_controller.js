@@ -1,6 +1,7 @@
 //.. means one level up because we are in controllers.
 const Post =  require('../models/post');
 //module.exports.actionName=function(req,res){}
+//usimg async await only with fuctions.
 module.exports.home = async function(req,res){
     //checking cookies if exist or not.
     //console.log(req.cookies);
@@ -13,7 +14,17 @@ module.exports.home = async function(req,res){
         let postsdata = await Post.find({}).
         //populating the user of each post ie.. showing the name of each post.
         //.exec() is the callback function.
-        populate('user').exec();
+        //populate the user of each post.
+        populate('user')
+        //we need to pre-populate to find the comment and the user of each comment.
+        //syntax required
+        .populate({
+            path: 'comment',
+            populate: {
+                path: 'user'
+            }
+        })
+       //.exec();
         return res.render('home',{
             title:'HOME',
             //json object created

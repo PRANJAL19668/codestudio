@@ -12,7 +12,7 @@ module.exports.create = async function(req,res){
                 post: post._id
             });
             //comment is actually pushed to the post
-            post.comments.push(comment); //something given by mongodb
+            post.comment.push(comment); //something given by mongodb
             post.save(); //updated version
             return res .redirect('/');
 
