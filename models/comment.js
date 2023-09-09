@@ -5,7 +5,7 @@ const commentSchema = new mongoose.Schema({
         required: true
     },
     //comment belongs to a user
-    //THIS ACTUALLY IS A REFERENCE,SO LINK THIS COMMMENT TO USER WHICH REGER TO THE USER'S SCHEMA ITSELF.
+    //THIS ACTUALLY IS A REFERENCE,SO LINK THIS COMMMENT TO USER WHICH REFER TO THE USER'S SCHEMA ITSELF.
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
