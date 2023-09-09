@@ -17,6 +17,12 @@
                      <% for (post of posts) { %>
                             <li>
                                    <p>
+                                          <!---if the user is signed in which is equal to the post.user(who created the post) then only delete the post-->
+                                          <% if (locals.user && locals.user.id == post.user.id){ %>
+                                          <small>
+                                                 <a href="/post/destroy/<%=post.id %>">XXX</a>
+                                          </small>
+                                          <%}%>
                                    <%= post.content %>
                                    <br>
                                    <small>
@@ -45,6 +51,7 @@
                                                         <%= comment.content %>
                                                         <br>
                                                         <small>
+                                                               <!-------fetching which user has comment it -->
                                                                <%=comment.user.name %>
                                                         </small>
                                                         </p>
