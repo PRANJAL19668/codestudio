@@ -36,7 +36,7 @@ module.exports.create = async function(req,res){
 
 module.exports.destroy = async function(req,res){
     try{
-        //checking comments if it is actually present orr not in db.
+        //checking comments if it is actually present or not in db.
         let comment = await Comment.findById(req.params.id); //string params
         //AUTHORIZATION CHECKS IF THE USER IS SAME OR NOT WHO HAS CREATED THE COMMENT i.e,, THE USER WHO IS DELETING A COMMENT.
         if(comment.user == req.user.id){

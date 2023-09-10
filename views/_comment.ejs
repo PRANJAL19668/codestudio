@@ -1,0 +1,16 @@
+<li>
+    <p>
+           <!----AUTHENTICATION  CHECKS-------->
+           <% if(locals.user && locals.user.id == comment.user.id){ %>
+                  <small>
+                         <a href="/comment/destroy/<%= comment.id %>">X--</a>
+                  </small>
+                  <%}%>
+    <%= comment.content %>
+    <br>
+    <small>
+           <!-------fetching which user has comment it -->
+           <%=comment.user.name %>
+    </small>
+    </p>
+</li>

@@ -15,60 +15,9 @@
               <ul>
                      <!-----------------syntax required------------------>
                      <% for (post of posts) { %>
-                            <li>
-                                   <p>
-                                          <!---if the user is signed in which is equal to the post.user(who created the post) then only delete the post-->
-                                          <% if (locals.user && locals.user.id == post.user.id){ %>
-                                          <small>
-                                                 <a href="/post/destroy/<%= post.id  %>">XXX</a>
-                                          </small>
-                                          <%}%>
-                                   <%= post.content %>
-                                   <br>
-                                   <small>
-                                          <!----fetching which user has post it -->
-                                          <%= post.user.name %>
-                                   </small>
-                                   </p>
-                                   <!--------comments container-------------->
-                                       <div class="post-comments">
-                                          <!---------CHECKING AUTHENTICATION PLACING CHECKS IF THE USER IS SIGNED-IN OR NOT------------------->
-                                          <% if(locals.user){ %>
-                                                 <form action="/comment/create" method="POST">
-                                                        <!---THE INPUTFIELD OF THE CONTENT OF THE COMMENT------->
-                                                 <input type="text" name="content" placeholder="Type comments here..........." required>
-                                                 <!---THE ID OF THE POST THAT THE COMMENT NEEDS TO BE ADDED------>
-                                                 <!----WE NEED TO FIND THAT POST WITH POST ID THEN WE CAN COMMENT ON IT---->
-                                                 <input type="hidden" name="post" value="<%= post._id %>">
-                                                 <input type="submit" value="Add Comments">
-                                                 </form>
-                                                 <%}%>
-                                                 <div class="post-comments-list">
-                                                 <ul id="post-comment-<%=post._id%>">
-                                                        <!-----comments are inside the post----->
-                                                 <% for(comment of post.comment){ %>
-                                                        <p>
-                                                               <!----AUTHENTICATION  CHECKS-------->
-                                                               <% if(locals.user && locals.user.id == comment.user.id){ %>
-                                                                      <small>
-                                                                             <a href="/comment/destroy/<%= comment.id %>">X--</a>
-                                                                      </small>
-                                                                      <%}%>
-                                                        <%= comment.content %>
-                                                        <br>
-                                                        <small>
-                                                               <!-------fetching which user has comment it -->
-                                                               <%=comment.user.name %>
-                                                        </small>
-                                                        </p>
-                                                 <%}%>
-
-                                                 </ul>
-
-                                                 </div>
-                                          </div>
-
-                            </li>
+                            <!-----PARTIALS-->
+                           <%-include('_post')-%>
+                            
                      <%}%>
               </ul>
         </div>
