@@ -103,6 +103,8 @@ module.exports.createSession = async function(req, res) {
       // Check if the provided password matches the user's password
       if (user.password === req.body.password) {
         // If the password matches, set the user_id cookie
+        //.id converts it into string
+        //._id converts it into objectId
         res.cookie('user_id', user._id);
         return res.redirect('/users/profile');
       } else {

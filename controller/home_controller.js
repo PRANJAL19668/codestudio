@@ -1,5 +1,7 @@
 //.. means one level up because we are in controllers.
 const Post =  require('../models/post');
+//importing User
+const User = require('../models/user');
 //module.exports.actionName=function(req,res){}
 //usimg async await only with fuctions.
 module.exports.home = async function(req,res){
@@ -25,12 +27,16 @@ module.exports.home = async function(req,res){
             }
         })
        //.exec();
+       //if the user is signed-in
+       let users  = await User.find({});
         return res.render('home',{
             title:'HOME',
             //json object created
             //1st posts is the property which we are giving in home.ejs i.e.. (post of posts)
             //2nd postsdata  is the value which we are giving in the line no 13 ie..postsdata
-            posts : postsdata
+            posts : postsdata,
+            //json object created for users
+            all_users : users
         });
 
     } catch (err){
