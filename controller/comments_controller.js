@@ -38,7 +38,7 @@ module.exports.destroy = async function(req,res){
     try{
         //checking comments if it is actually present orr not in db.
         let comment = await Comment.findById(req.params.id); //string params
-        //AUTHORIZATION CHECKS
+        //AUTHORIZATION CHECKS IF THE USER IS SAME OR NOT WHO HAS CREATED THE COMMENT i.e,, THE USER WHO IS DELETING A COMMENT.
         if(comment.user == req.user.id){
             //NOW,FIRSTLY GO INSIDE THAT POST WITH POST ID AND DELETE THAT COMMENT.
             // IF I DELETE COMMENT FIRST SO,I WANT TO SAVE POST ID THAT WHICH POST DID THIS COMMENT BELONG TO SO SAVE INTO ANOTHER VARIABLE.
