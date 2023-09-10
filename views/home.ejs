@@ -48,6 +48,12 @@
                                                         <!-----comments are inside the post----->
                                                  <% for(comment of post.comment){ %>
                                                         <p>
+                                                               <!----AUTHENTICATION  CHECKS-------->
+                                                               <% if(locals.user && locals.user.id == comment.user.id){ %>
+                                                                      <small>
+                                                                             <a href="/comment/destroy/<%=comment.id %>">X--</a>
+                                                                      </small>
+                                                                      <%}%>
                                                         <%= comment.content %>
                                                         <br>
                                                         <small>

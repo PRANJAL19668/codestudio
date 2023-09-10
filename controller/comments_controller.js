@@ -26,3 +26,35 @@ module.exports.create = async function(req,res){
         return res.redirect('/');
     }
 }
+
+
+
+
+
+//DELETING A COMMENT
+
+
+module.exports.destroy = async function(req,res){
+    try{
+        //checking comments if it is actually present orr not in db.
+        let comment = await Comment.findById(req.params.id); //string params
+        //AUTHORIZATION CHECKS
+        if(comment.user == req.user.id){
+            //NOW,FIRSTLY GO INSIDE THAT POST WITH POST ID AND DELETE THAT COMMENT.
+            // IF I DELETE COMMENT FIRST SO,I WANT TO SAVE POST ID THAT WHICH POST DID THIS COMMENT BELONG TO SO SAVE INTO ANOTHER VARIABLE.
+            let postId = comment.post;
+            //if comment found,remove that comment.
+            Comment.remove();
+            //i am deleting one of the comments  so update that post and pull out the comment id from the list of comments.
+            //$pull is the inbuilt function in mongoose very close to native mongodb syntax CLI.
+            Post.findByIdAndUpdate(postId, {$pull: {comment: req.params.id }});
+        } else{
+            //if does not matches,return back
+            return res.redirect('back');
+        }
+
+    } catch (err){
+        console.log('Error in fetching/deleting a comment',err);
+        return res.redirect('back');
+        }
+}
