@@ -20,7 +20,7 @@
                                           <!---if the user is signed in which is equal to the post.user(who created the post) then only delete the post-->
                                           <% if (locals.user && locals.user.id == post.user.id){ %>
                                           <small>
-                                                 <a href="/post/destroy/<%=post.id %>">XXX</a>
+                                                 <a href="/post/destroy/<%= post.id  %>">XXX</a>
                                           </small>
                                           <%}%>
                                    <%= post.content %>
@@ -34,7 +34,7 @@
                                        <div class="post-comments">
                                           <!---------CHECKING AUTHENTICATION PLACING CHECKS IF THE USER IS SIGNED-IN OR NOT------------------->
                                           <% if(locals.user){ %>
-                                                 <form action="/comments/create" method="POST">
+                                                 <form action="/comment/create" method="POST">
                                                         <!---THE INPUTFIELD OF THE CONTENT OF THE COMMENT------->
                                                  <input type="text" name="content" placeholder="Type comments here..........." required>
                                                  <!---THE ID OF THE POST THAT THE COMMENT NEEDS TO BE ADDED------>
@@ -51,7 +51,7 @@
                                                                <!----AUTHENTICATION  CHECKS-------->
                                                                <% if(locals.user && locals.user.id == comment.user.id){ %>
                                                                       <small>
-                                                                             <a href="/comment/destroy/<%=comment.id %>">X--</a>
+                                                                             <a href="/comment/destroy/<%= comment.id %>">X--</a>
                                                                       </small>
                                                                       <%}%>
                                                         <%= comment.content %>

@@ -12,7 +12,7 @@ router.get('/', homeController.home);
 //further routes can be accessed from here,i.e.., making new routes and calling them in this.
 router.use('/users', require('./users'));
 router.use('/post', require('./post'));
-router.use('/comments', require('./comments'));
+router.use('/comment', require('./comments'));
 
 
 

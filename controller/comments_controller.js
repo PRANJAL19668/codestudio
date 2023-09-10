@@ -44,10 +44,11 @@ module.exports.destroy = async function(req,res){
             // IF I DELETE COMMENT FIRST SO,I WANT TO SAVE POST ID THAT WHICH POST DID THIS COMMENT BELONG TO SO SAVE INTO ANOTHER VARIABLE.
             let postId = comment.post;
             //if comment found,remove that comment.
-            Comment.remove();
+            comment.remove();
             //i am deleting one of the comments  so update that post and pull out the comment id from the list of comments.
             //$pull is the inbuilt function in mongoose very close to native mongodb syntax CLI.
             Post.findByIdAndUpdate(postId, {$pull: {comment: req.params.id }});
+            return res.redirect('back');
         } else{
             //if does not matches,return back
             return res.redirect('back');
