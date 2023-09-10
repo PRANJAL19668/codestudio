@@ -46,6 +46,7 @@ module.exports.signin=function(req,res){
 //using async await only with functions.
 module.exports.create= async function(req,res){
   if(req.isAuthenticated()){
+    //isAuthenticated() is  a function given by passport.js only.
     return res.redirect('/users/profile');
   }
   if(req.body.password != req.body.Confirm_password){
@@ -130,7 +131,7 @@ module.exports.createSession = async function(req, res) {
 // }
 
 //DESTROY SESSION
-module.exports.destroySession=function(req,res){
+module.exports.destroySession = function(req,res){
   //req.logout() is the function given by passport.js
   
   req.logout(function(err) {
