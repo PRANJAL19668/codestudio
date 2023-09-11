@@ -6,7 +6,7 @@ const User = require('../models/user');
     let user = await User.findById(req.params.id); //string params
         return res.render('user_profile', {
             title: 'User Profile',
-            profile_users: user
+            profile_user : user
         });
 
 } catch(err){
