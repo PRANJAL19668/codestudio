@@ -1,52 +1,40 @@
 
-//require the models folder.
-//.. one level up
 const User = require('../models/user');
   module.exports.profile =  async function(req, res){
-    //using promises
+    //using promises(.then(function(user){})
     try{
-    let user = await User.findById(req.params.id).then(function(user){
+    let user = await User.findById(req.params.id); //string params
         return res.render('user_profile', {
             title: 'User Profile',
-            profile_user: user
+            profile_users: user
         });
-      });
 
 } catch(err){
   console.log('Error in finding user',err);
   return res.redirect('back');
 
 }
-  }
-  // try{
-  // let user = await User.findById(req.params.id); //string params
-  // return res.render('user_Profile',{
-  //   title:'User Profile',
-  //   profile_user : user  
-  // });
-  // } catch(err){
-  //   console.log('Error in finding user',err);
-  //   return res.redirect('back');
-  // }
-  //module.exports.profile = async function(req,res){
-//  if(req.cookies.user_id){
-//   //check if the cookies with user_id is present or not.
-//     try{
-//       let user = await User.findById(req.cookies.user_id);
-//       //if the user found
-//       return res.render('user_profile',{
-//         title:'Profile Page',
-//         //json object created
-//         user_profile: user
-//       });
+   }
+   module.exports.profile = async function(req,res){
+  if(req.cookies.user_id){
+   //check if the cookies with user_id is present or not.
+    try{
+      let user = await User.findById(req.cookies.user_id);
+      //if the user found
+      return res.render('user_profile',{
+        title:'Profile Page',
+        //json object created
+        user_profile: user
+      });
+  
       
 
-//     } catch(err){
-//       console.log('Error in showing the details of signed-in user',err);
-//       return res.redirect('back');
-//     }
-//   }
-// }
+    } catch(err){
+      console.log('Error in showing the details of signed-in user',err);
+      return res.redirect('back');
+    }
+  }
+}
 
 
 
@@ -64,6 +52,7 @@ module.exports.signup=function(req,res){
 //RENDER SIGN-IN PAGE
 module.exports.signin=function(req,res){
   if(req.isAuthenticated()){
+    //isAuthenticated() is the function given by passport.js only.
     return res.redirect('/users/profile');
   }
   return res.render('user_sign_in',{

@@ -8,7 +8,7 @@ module.exports.home = async function(req,res){
     //checking cookies if exist or not.
     //console.log(req.cookies);
     //changing the value of cookies
-    //user._id value is 87
+    //user._id value is 87 which is of datatype- objectId
    // res.cookie('user_id',87);
     //return res.end('<h1>Express  is up for the codestudio!</h1>');
     try{

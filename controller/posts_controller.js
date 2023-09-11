@@ -8,6 +8,7 @@ module.exports.create = async function(req,res){
     try{
         let post = await Post.create({
             content: req.body.content,
+            //._id converts it into objectId
             user: req.user._id
         });
         return res.redirect('back');
