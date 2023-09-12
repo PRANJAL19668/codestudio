@@ -13,6 +13,51 @@ module.exports.profile = async function (req, res) {
     return res.redirect("back");
   }
 };
+
+//UPDATING PROFILE PAGE
+module.exports.update = async function(req,res){
+  try{
+    //CHECKING UPDATE REQUEST,IF SOMEONE WANTS TO FIDDLE WITH MY ACCOUNT i.e,, ANY LOGGED IN USER CAN EDIT ANY OF THE USER PROFILE,IF I DONT PUT CHECKS HERE.
+    if(req.user.id == req.params.id ){
+      User.findByIdAndUpdate(req.params.id, {name:req.body.name, email: req.body.email});
+      User.findByIdAndUpdate(req.params.id, req.body);
+      return res.redirect('back');
+    } else{
+      //IF SOMEONNE IS FIDDLING WITH MY ACCOUNT.
+      return res .status(401).send('Unauthorized');
+    }
+
+  } catch(err){
+    console.log('Error in updating profile page',err);
+    return res.redirect('back');
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // module.exports.profile = async function (req, res) {
 //   if (req.cookies.user_id) {
 //     //check if the cookies with user_id is present or not.
