@@ -1,2 +1,16 @@
 body {
   background-color: darkmagenta; }
+
+#home-container {
+  display: flex; }
+
+#feed-post {
+  width: 70%;
+  padding: 10px; }
+
+#user-friends {
+  width: 20%;
+  padding-top: 50px;
+  padding-bottom: 36px;
+  border: 25px solid mediumseagreen;
+  height: 100%; }
