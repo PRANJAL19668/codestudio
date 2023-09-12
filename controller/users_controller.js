@@ -17,15 +17,33 @@ module.exports.profile = async function (req, res) {
 //UPDATING PROFILE PAGE
 module.exports.update = async function(req,res){
   try{
-    //CHECKING UPDATE REQUEST,IF SOMEONE WANTS TO FIDDLE WITH MY ACCOUNT i.e,, ANY LOGGED IN USER CAN EDIT ANY OF THE USER PROFILE,IF I DONT PUT CHECKS HERE.
-    if(req.user.id == req.params.id ){
-      //let user = await User.findById(req.params.id);
-      User.findByIdAndUpdate(req.params.id, {name:req.body.name, email: req.body.email});
-      User.findByIdAndUpdate(req.params.id, req.body);
+    // //CHECKING UPDATE REQUEST,IF SOMEONE WANTS TO FIDDLE WITH MY ACCOUNT i.e,, ANY LOGGED IN USER CAN EDIT ANY OF THE USER PROFILE,IF I DONT PUT CHECKS HERE.
+    // if(req.user.id == req.params.id ){
+    //   //let user = await User.findById(req.params.id);
+    //   User.findByIdAndUpdate(req.params.id, {name:req.body.name, email: req.body.email});
+    //   //User.findByIdAndUpdate(req.params.id, req.body);
+    //   return res.redirect('back');
+    // } else{
+    //   //IF SOMEONNE IS FIDDLING WITH MY ACCOUNT.
+    //   return res .status(401).send('Unauthorized');
+    // }
+    if (req.user.id == req.params.id) {
+      // Use await to make the update asynchronous functions and wait for the result
+      let updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        { name: req.body.name, email: req.body.email },
+        { new: true } // This option ensures that the updated user is returned
+      );
+
+      if (!updatedUser) {
+        return res.redirect("back");
+      }
+
       return res.redirect('back');
-    } else{
-      //IF SOMEONNE IS FIDDLING WITH MY ACCOUNT.
-      return res .status(401).send('Unauthorized');
+    } else {
+      // IF SOMEONE IS FIDDLING WITH MY ACCOUNT.
+      //401 means unauthorized
+      return res.status(401).send('Unauthorized');
     }
 
   } catch(err){
