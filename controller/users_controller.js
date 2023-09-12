@@ -19,6 +19,7 @@ module.exports.update = async function(req,res){
   try{
     //CHECKING UPDATE REQUEST,IF SOMEONE WANTS TO FIDDLE WITH MY ACCOUNT i.e,, ANY LOGGED IN USER CAN EDIT ANY OF THE USER PROFILE,IF I DONT PUT CHECKS HERE.
     if(req.user.id == req.params.id ){
+      //let user = await User.findById(req.params.id);
       User.findByIdAndUpdate(req.params.id, {name:req.body.name, email: req.body.email});
       User.findByIdAndUpdate(req.params.id, req.body);
       return res.redirect('back');
@@ -83,6 +84,10 @@ module.exports.update = async function(req,res){
 //}
 //RENDER SIGN-UP PAGE
 module.exports.signup = function (req, res) {
+  if (req.isAuthenticated()) {
+    //isAuthenticated() is the function given by passport.js only.
+    return res.redirect("/users/profile");
+  }
   return res.render("user_sign_up", {
     title: "LEET CODING/SIGN UP",
   });
@@ -100,10 +105,10 @@ module.exports.signin = function (req, res) {
 //GET THE SIGN-UP DATA
 //using async await only with functions.
 module.exports.create = async function (req, res) {
-  if (req.isAuthenticated()) {
+  //if (req.isAuthenticated()) {
     //isAuthenticated() is  a function given by passport.js only.
-    return res.redirect("/users/profile");
-  }
+    //return res.redirect("/users/profile");
+  //}
   if (req.body.password != req.body.Confirm_password) {
     return res.redirect("back");
   }
@@ -149,33 +154,62 @@ module.exports.create = async function (req, res) {
 //     }
 
 //   }
+
+
+
+
+
+
+
+
+
+
 //signed-in using manual authentication
 module.exports.createSession = async function (req, res) {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    //if user found
-    if (user) {
-      // Check if the provided password matches the user's password
-      if (user.password === req.body.password) {
-        // If the password matches, set the user_id cookie
-        //.id converts it into string
-        //._id converts it into objectId
-        res.cookie("user_id", user._id);
-        return res.redirect("/users/profile");
-      } else {
-        // Password does not match, redirect back
-        return res.redirect("back");
-      }
-    } else {
-      // User with the given email doesn't exist, redirect back
-      return res.redirect("back");
-    }
-  } catch (err) {
-    console.log("Error in creating user while signing-in", err);
-    // Handle the error appropriately, e.g., send an error response
-    return res.status(500).send("Internal Server Error");
-  }
-};
+//   try {
+//     const user = await User.findOne({ email: req.body.email });
+//     //if user found
+//     if (user) {
+//       // Check if the provided password matches the user's password
+//       if (user.password === req.body.password) {
+//         // If the password matches, set the user_id cookie
+//         //.id converts it into string
+//         //._id converts it into objectId
+//         res.cookie("user_id", user._id);
+//         return res.redirect("/users/profile");
+//       } else {
+//         // Password does not match, redirect back
+//         return res.redirect("back");
+//       }
+//     } else {
+//       // User with the given email doesn't exist, redirect back
+//       return res.redirect("back");
+//     }
+//   } catch (err) {
+//     console.log("Error in creating user while signing-in", err);
+//     // Handle the error appropriately, e.g., send an error response
+//     return res.status(500).send("Internal Server Error");
+//   }
+// };
+return res.redirect('back');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //LOCAL AUTHENTICATION
 //when passport.js uses LocalStrategy () to authenticate the user,controlls come here and it will redirect to home page.
