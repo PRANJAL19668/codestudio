@@ -1,6 +1,6 @@
 const User = require("../models/user");
+//USING ASYNC AWAIT WITH FUNCTIONS.
 module.exports.profile = async function (req, res) {
-  //using promises(.then(function(user){})
   try {
     let user = await User.findById(req.params.id); //string params
     return res.render("user_profile", {
@@ -8,6 +8,7 @@ module.exports.profile = async function (req, res) {
       //json object creted
       profile_user: user
     });
+    //HANDLE ERRORS
   } catch (err) {
     console.log("Error in finding user", err);
     return res.redirect("back");
