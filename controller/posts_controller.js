@@ -11,9 +11,11 @@ module.exports.create = async function(req,res){
             //._id converts it into objectId
             user: req.user._id
         });
+        req.flash('Success','Post Published');
         return res.redirect('back');
     } catch (err){
-        console.log('Error in creating a post',err);
+        req.flash('Error','err');
+        //console.log('Error in creating a post',err);
         return res.redirect('back');
     }
 }
@@ -38,15 +40,18 @@ module.exports.destroy = async function(req,res){
             //using promises
             //commment.deleteMany({}) is the function which  deletes all the comments based on query passed.
             await Comment.deleteMany({post: req.params.id}).then(function(post){
+                req.flash('Success','Post and associated Comments destroyed' );
                 return res.redirect('back');
             });
         } else{
             //if the user is not same,then simply return back.
+            req.flash('error','Yoy cannot deleted this post');
             return res.redirect('back');
         }
 
     } catch(err){
-        console.log('Error in fetching/deleting a post',err);
+        //console.log('Error in fetching/deleting a post',err);
+        req.flash('Error',err);
         return res.redirect('back');
     }
 }

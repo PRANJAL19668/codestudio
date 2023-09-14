@@ -4,6 +4,11 @@
         <title>
             <%=locals.title %>
         </title>
+        <!--- USING -------NOTY-------------->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!---USING JQUERY AJAX-------->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" type="text/css" href="/css/layout.css">
         <link rel="stylesheet" type="text/css" href="/css/header.css">
         <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -12,14 +17,40 @@
     <body>
         <!--header------->
         <%- include('_header'); %>
-        <!------variable part defined---------->
+        <!----using flash------->
+        <!-- <% if ( flash.success && flash.success.length>0){%>
+            <h5>
+                <%= flash.success %>
+            </h5>
+        <%}%> -->
+                <!------variable part defined---------->
         <main id="layout-main">
            <%- body %>
         </main>
            <!-----footer---------->
         <%- include('_footer'); %>
         <% - script %>
-       
+        <script>
+        <% if(flash.success && flash.success.length>0){ %>
+            //NOTY SYNTAX REQUIRED
+            new Noty({
+                theme: 'relax',
+                text: '<%=flash.success %>',
+                type:'success',
+                layout:'topRight',
+                timeout:1500
+            }).show();
+        <%}%>
+        <% if(flash.error && flash.error.length>0){ %>
+            new Noty({
+                theme: 'relax',
+                text: '<%=flash.error %>',
+                type:'error',
+                layout:'topRight',
+                timeout:1500
+            }).show();
+            <%}%>
+       </script>
 
     </body>
 </html>

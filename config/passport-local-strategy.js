@@ -25,8 +25,8 @@ passport.use(
           .then(user => {
             if (!user || user.password !== password) {
                 //similar to password which we creted on createSession using manual authentication
-             //req.flash("error", "Invalid Username/Password");
-            console.log('Invalid Username/Password');
+             req.flash("error", "Invalid Username/Password");
+           // console.log('Invalid Username/Password');
               return done(null, false);
             }
   

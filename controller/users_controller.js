@@ -210,7 +210,9 @@ module.exports.createSession = async function (req, res) {
 //     return res.status(500).send("Internal Server Error");
 //   }
 // };
-return res.redirect('back');
+//using flash
+req.flash('Success','Logged-In Successfully');
+return res.redirect('/');
 }
 
 
@@ -245,6 +247,8 @@ module.exports.destroySession = function (req, res) {
       // Handle the error, if any
       console.log(err);
     }
+    //using flash
+    req.flash('Success','Logged-Out Successfully!');
     return res.redirect("/");
   });
 };
