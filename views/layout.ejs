@@ -35,7 +35,8 @@
                 timeout:1500
             }).show();
         <%}%>
-        <% (flash.error && flash.error.length>0){%>
+        // error
+        <% if(flash.error && flash.error.length>0){%>
             new Noty({
                 theme: 'relax',
                 text: '<%=flash.error %>',
