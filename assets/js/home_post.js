@@ -1,4 +1,0 @@
-
-{
-    Console.log("Hello");
-}
