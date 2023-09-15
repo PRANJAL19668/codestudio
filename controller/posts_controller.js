@@ -11,6 +11,16 @@ module.exports.create = async function(req,res){
             //._id converts it into objectId
             user: req.user._id
         });
+        //CHECKING XML HTTP REQUEST WHICH IS AJAX REQUEST.
+        if(req.xhr){
+            return res.status(200).json({
+                //200 means all is ok.
+                data:{
+                    posts:postdata
+                },
+                message:"Post Created!"
+            });
+        }
         req.flash('Success','Post Published');
         return res.redirect('back');
     } catch (err){
